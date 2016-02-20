@@ -1,0 +1,2 @@
+# confeta
+Ultimate configuration library
