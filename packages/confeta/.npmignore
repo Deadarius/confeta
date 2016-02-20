@@ -1,0 +1,8 @@
+.eslintrc
+.babelrc
+.editorconfig
+.eslintignore
+tests
+src
+node_modules
+!npm-shrinkwrap.json
