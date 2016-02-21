@@ -7,7 +7,7 @@ class ConfetaArgv {
   constructor (options = {}) {
     let argv = minimist(process.argv.slice(2))
     if (argv._ && options.optionlessArgName) {
-      argv[options.optionlessArgName] = argv._
+      argv[options.optionlessArgName] = argv._[0]
       delete argv._
     }
 

@@ -27,7 +27,7 @@ var ConfetaArgv = function () {
 
     var argv = (0, _minimist2.default)(process.argv.slice(2));
     if (argv._ && options.optionlessArgName) {
-      argv[options.optionlessArgName] = argv._;
+      argv[options.optionlessArgName] = argv._[0];
       delete argv._;
     }
 

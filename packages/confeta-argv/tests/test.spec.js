@@ -17,13 +17,14 @@ process.argv = process
   ])
 
 tape('Test parse', test => {
-  let confetaArgv = ConfetaArgv()
+  let confetaArgv = ConfetaArgv({optionlessArgName: 'optionless'})
 
   test.equal(confetaArgv.get(['a']), 'a_value')
   test.equal(confetaArgv.get(['b']), 'b_value')
   test.equal(confetaArgv.get(['nested', 'arg1']), 'nested_arg1value')
   test.equal(confetaArgv.get(['nested', 'arg2']), 'nested_arg2value')
   test.equal(confetaArgv.get(['nested', 'subnested', 'arg1']), 'nested_subnested_arg2value')
+  test.equal(confetaArgv.get(['optionless']), 'noOptionValue')
 
   test.end()
 })
