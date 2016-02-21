@@ -5,10 +5,13 @@ import ConfetaFile from '../lib/index'
 
 tape('Parse function', test => {
   test.plan(1)
-  ConfetaFile(content => {
-    test.equal(content, 'TEXTBLAHBLAH\n')
-    return {}
-  }, {path: 'tests/fixture.txt'})
+  ConfetaFile({
+    parseFn (content) {
+      test.equal(content, 'TEXTBLAHBLAH\n')
+      return {}
+    },
+    path: 'tests/fixture.txt'
+  })
 })
 
 tape('Parse JSON', test => {
