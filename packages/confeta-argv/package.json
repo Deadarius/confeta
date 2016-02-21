@@ -1,6 +1,6 @@
 {
   "name": "confeta-argv",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "",
   "main": "lib/index.js",
   "srcPath": "src",
