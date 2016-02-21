@@ -4,16 +4,16 @@ import path from 'path'
 const $obj = Symbol('obj')
 
 class ConfetaFile {
-  constructor (parseFn, options = {}) {
+  constructor (options = {parseFn: JSON.parse}) {
     let obj
     if (options.content) {
-      obj = parseFn(options.content)
+      obj = options.parseFn(options.content)
     } else if (options.path) {
       let filePath = options.path
 
       !path.isAbsolute(filePath) && (filePath = path.resolve(process.cwd(), options.path))
 
-      obj = parseFn(fs.readFileSync(filePath, 'utf8'))
+      obj = options.parseFn(fs.readFileSync(filePath, 'utf8'))
     }
 
     this[$obj] = obj
@@ -30,7 +30,7 @@ class ConfetaFile {
   }
 }
 
-export default function createInstance (parseFn, options) {
-  return new ConfetaFile(parseFn, options)
+export default function createInstance (options) {
+  return new ConfetaFile(options)
 }
 

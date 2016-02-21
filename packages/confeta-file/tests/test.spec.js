@@ -12,7 +12,7 @@ tape('Parse function', test => {
 })
 
 tape('Parse JSON', test => {
-  let confetaFile = ConfetaFile(JSON.parse, {path: 'tests/fixture.json'})
+  let confetaFile = ConfetaFile({parseFn: JSON.parse, path: 'tests/fixture.json'})
 
   test.equal(confetaFile.get(['arg1']), 'argone')
   test.equal(confetaFile.get(['arg2']), 'argtwo')
@@ -24,7 +24,7 @@ tape('Parse JSON', test => {
 })
 
 tape('Parse YAML', test => {
-  let confetaFile = ConfetaFile(yaml.eval, {path: 'tests/fixture.yaml'})
+  let confetaFile = ConfetaFile({parseFn: yaml.eval, path: 'tests/fixture.yaml'})
 
   test.equal(confetaFile.get(['arg1']), 'argone')
   test.equal(confetaFile.get(['arg2']), 'argtwo')
