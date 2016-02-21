@@ -1,7 +1,6 @@
 import minimist from 'minimist'
 
 const $argv = Symbol('argv')
-const $separator = Symbol('separator')
 
 class ConfetaArgv {
   constructor (options = {}) {
@@ -12,7 +11,6 @@ class ConfetaArgv {
     }
 
     this[$argv] = argv
-    this[$separator] = options.separator || '.'
   }
 
   get (segments) {
