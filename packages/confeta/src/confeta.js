@@ -21,7 +21,7 @@ class Confeta {
   }
 
   build () {
-    return buildConfig(this[$schema], segments => {
+    return buildConfig(this[$schema], (segments, descriptor) => {
       for (let source of this[$sources]) {
         const {
           instance,
@@ -35,6 +35,14 @@ class Confeta {
         if (value) {
           return value
         }
+      }
+
+      if (descriptor.default) {
+        return descriptor.default
+      }
+
+      if (descriptor.required) {
+        throw new Error(`Required value ${segments} was not found in any source`)
       }
     }, this[$options])
   }

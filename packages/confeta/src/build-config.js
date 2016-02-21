@@ -11,7 +11,7 @@ function buildConfig (schema, getValue, options) {
   let result = {}
 
   traverseSchema(schema, (descriptor, segments) => {
-    let raw = getValue(segments)
+    let raw = getValue(segments, descriptor)
     let value = raw
 
     switch (descriptor.type) {
