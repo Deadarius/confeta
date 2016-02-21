@@ -5,4 +5,5 @@
 tests
 src
 node_modules
+README.md.old
 !npm-shrinkwrap.json
