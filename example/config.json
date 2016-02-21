@@ -1,0 +1,8 @@
+{
+  "mongoUrl": "mongo://fake.fake:6969",
+  "timeout": 5500,
+  "host": {
+    "domain": "localhost",
+    "port": 3000
+  }
+}
