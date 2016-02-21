@@ -31,7 +31,6 @@ class ConfetaFile {
 }
 
 export default function createInstance (parseFn, options) {
-
   return new ConfetaFile(parseFn, options)
 }
 
