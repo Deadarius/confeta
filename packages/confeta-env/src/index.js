@@ -1,7 +1,7 @@
 const $env = Symbol('env')
 const $separator = Symbol('separator')
 
-class ConfetaArgv {
+class ConfetaEnv {
   constructor (options = {}) {
     let prefix = options.prefix || ''
     this[$separator] = options.separator || '.'
@@ -23,6 +23,6 @@ class ConfetaArgv {
 }
 
 export default function createInstance (options) {
-  return new ConfetaArgv(options)
+  return new ConfetaEnv(options)
 }
 
