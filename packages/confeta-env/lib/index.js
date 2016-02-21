@@ -13,11 +13,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var $env = Symbol('env');
 var $separator = Symbol('separator');
 
-var ConfetaArgv = function () {
-  function ConfetaArgv() {
+var ConfetaEnv = function () {
+  function ConfetaEnv() {
     var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
-    _classCallCheck(this, ConfetaArgv);
+    _classCallCheck(this, ConfetaEnv);
 
     var prefix = options.prefix || '';
     this[$separator] = options.separator || '.';
@@ -31,7 +31,7 @@ var ConfetaArgv = function () {
     }, {});
   }
 
-  _createClass(ConfetaArgv, [{
+  _createClass(ConfetaEnv, [{
     key: 'get',
     value: function get(segments) {
       var path = segments.join(this[$separator]);
@@ -40,9 +40,9 @@ var ConfetaArgv = function () {
     }
   }]);
 
-  return ConfetaArgv;
+  return ConfetaEnv;
 }();
 
 function createInstance(options) {
-  return new ConfetaArgv(options);
+  return new ConfetaEnv(options);
 }

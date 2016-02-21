@@ -17,7 +17,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var $argv = Symbol('argv');
-var $separator = Symbol('separator');
 
 var ConfetaArgv = function () {
   function ConfetaArgv() {
@@ -32,7 +31,6 @@ var ConfetaArgv = function () {
     }
 
     this[$argv] = argv;
-    this[$separator] = options.separator || '.';
   }
 
   _createClass(ConfetaArgv, [{
