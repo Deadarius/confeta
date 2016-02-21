@@ -36,6 +36,5 @@
     "tape": "^4.4.0",
     "watch-run": "^1.2.4"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
