@@ -1,5 +1,5 @@
 {
-  "name": "confeta-json",
+  "name": "confeta-file",
   "version": "0.1.0",
   "description": "",
   "main": "lib/index.js",
@@ -34,8 +34,8 @@
     "tap-notify": "0.0.3",
     "tap-spec": "^4.1.1",
     "tape": "^4.4.0",
-    "watch-run": "^1.2.4"
+    "watch-run": "^1.2.4",
+    "yaml": "^0.2.3"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }

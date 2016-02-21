@@ -1,5 +1,5 @@
 {
-  "name": "confeta-args",
+  "name": "confeta-json",
   "version": "0.1.0",
   "dependencies": {
     "acorn": {
@@ -689,11 +689,6 @@
       "version": "1.0.2",
       "from": "events-to-array@>=1.0.1 <2.0.0",
       "resolved": "https://registry.npmjs.org/events-to-array/-/events-to-array-1.0.2.tgz"
-    },
-    "exec-sh": {
-      "version": "0.2.0",
-      "from": "exec-sh@>=0.2.0 <0.3.0",
-      "resolved": "https://registry.npmjs.org/exec-sh/-/exec-sh-0.2.0.tgz"
     },
     "exit-hook": {
       "version": "1.1.1",
@@ -2755,6 +2750,11 @@
       "version": "4.0.1",
       "from": "xtend@>=4.0.0 <5.0.0",
       "resolved": "https://registry.npmjs.org/xtend/-/xtend-4.0.1.tgz"
+    },
+    "yaml": {
+      "version": "0.2.3",
+      "from": "yaml@latest",
+      "resolved": "https://registry.npmjs.org/yaml/-/yaml-0.2.3.tgz"
     },
     "yamlish": {
       "version": "0.0.7",

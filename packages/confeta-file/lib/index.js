@@ -22,26 +22,27 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var $obj = Symbol('obj');
 
-var ConfetaJson = function () {
-  function ConfetaJson() {
-    var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+var ConfetaFile = function () {
+  function ConfetaFile(parseFn) {
+    var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 
-    _classCallCheck(this, ConfetaJson);
+    _classCallCheck(this, ConfetaFile);
 
     var obj = undefined;
     if (options.content) {
-      obj = JSON.parse(options.content);
+      obj = parseFn(options.content);
     } else if (options.path) {
       var filePath = options.path;
 
       !_path2.default.isAbsolute(filePath) && (filePath = _path2.default.resolve(process.cwd(), options.path));
-      obj = JSON.parse(_fs2.default.readFileSync(filePath));
+
+      obj = parseFn(_fs2.default.readFileSync(filePath, 'utf8'));
     }
 
     this[$obj] = obj;
   }
 
-  _createClass(ConfetaJson, [{
+  _createClass(ConfetaFile, [{
     key: 'get',
     value: function get(segments) {
       var value = this[$obj];
@@ -75,9 +76,10 @@ var ConfetaJson = function () {
     }
   }]);
 
-  return ConfetaJson;
+  return ConfetaFile;
 }();
 
-function createInstance(options) {
-  return new ConfetaJson(options);
+function createInstance(parseFn, options) {
+
+  return new ConfetaFile(parseFn, options);
 }

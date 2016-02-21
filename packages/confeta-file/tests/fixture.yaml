@@ -1,0 +1,8 @@
+---
+  arg1: "argone"
+  arg2: "argtwo"
+  nested:
+    arg1: "nestedargone"
+    arg2: "nestedargtwo"
+    subnested:
+      arg3: "argthree"
