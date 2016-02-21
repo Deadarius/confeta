@@ -25,6 +25,10 @@ class ConfetaFile {
 
     for (const segment of segments) {
       value = value[segment]
+
+      if (!value) {
+        return
+      }
     }
 
     return value

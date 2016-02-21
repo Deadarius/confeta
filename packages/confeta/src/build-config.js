@@ -4,7 +4,7 @@ import traverseSchema from './traverse-schema'
 function buildConfig (schema, getValue, options) {
   function throwIfStrict () {
     if (options.strict) {
-      throw new Error('')
+      throw new Error('Incorrect type')
     }
   }
 
@@ -38,7 +38,7 @@ function buildConfig (schema, getValue, options) {
           value = parseInt(raw, 10)
 
           if (isNaN(value)) {
-            throw new Error()
+            throw new Error('Couldn\'t parse integer')
           }
         }
         break
@@ -51,7 +51,7 @@ function buildConfig (schema, getValue, options) {
         }
 
         if (isNaN(value)) {
-          throw new Error()
+          throw new Error('Couldn\'t parse float')
         }
         break
       }
@@ -63,7 +63,7 @@ function buildConfig (schema, getValue, options) {
         }
 
         if (value.toString() === 'Invalid Date') {
-          throw new Error()
+          throw new Error('Couldn\'t parse date')
         }
         break
       }
