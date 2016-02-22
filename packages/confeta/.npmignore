@@ -6,4 +6,5 @@ tests
 src
 node_modules
 README.md.old
+npm-debug.log*
 !npm-shrinkwrap.json

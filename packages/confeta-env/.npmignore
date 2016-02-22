@@ -5,4 +5,5 @@
 tests
 src
 node_modules
+npm-debug.log*
 !npm-shrinkwrap.json

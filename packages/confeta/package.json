@@ -7,6 +7,7 @@
   "buildPath": "lib",
   "srcGlob": "./src/**/*.js",
   "testsGlob": "./tests/**/*.spec.js",
+  "repository": "https://github.com/Deadarius/confeta/tree/master/packages/confeta",
   "scripts": {
     "lint": "eslint .",
     "lint-notify": "npm run lint -- --format node_modules/eslint-tap/tap.js | tap-notify",
