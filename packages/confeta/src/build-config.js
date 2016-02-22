@@ -1,6 +1,22 @@
 import types from './types'
 import traverseSchema from './traverse-schema'
 
+function assignValue (result, segments, value) {
+  const firstSegment = segments[0]
+
+  if (segments.length === 1) {
+    result[firstSegment] = value
+    return
+  }
+
+  let nextResult = result[firstSegment]
+  if (!nextResult) {
+    nextResult = result[firstSegment] = {}
+  }
+
+  assignValue(nextResult, segments.slice(1), value)
+}
+
 function buildConfig (schema, getValue, options) {
   function throwIfStrict () {
     if (options.strict) {
@@ -73,9 +89,7 @@ function buildConfig (schema, getValue, options) {
       }
     }
 
-    let key = segments.join('.')
-
-    result[key] = value
+    assignValue(result, segments, value)
   })
 
   return result

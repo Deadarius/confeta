@@ -4,7 +4,7 @@ import { Confeta, types } from '../index'
 
 let mockSource = {
   get (segments) {
-    return '' + Math.random()
+    return '' + Math.random() * 100 + 13
   }
 }
 
@@ -53,5 +53,23 @@ tape('Test', test => {
   .build()
 
   test.ok(config, 'Config is built')
+  test.equal(typeof config, 'object', 'config is an object')
+
+  test.ok(config.mongoUrl, 'mongoUrl is present')
+  test.equal(typeof config.mongoUrl, 'string', 'mongoUrl is a string')
+
+  test.ok(config.auth, 'auth is present')
+  test.equal(typeof config.auth, 'object', 'auth is an object')
+
+  test.ok(config.auth.userName, 'auth.userName is present')
+  test.equal(typeof config.auth.userName, 'string', 'auth.userName is a string')
+
+  test.ok(config.auth.password, 'auth.password is present')
+  test.equal(typeof config.auth.password, 'string', 'auth.password is a string')
+
+  test.ok(config.timeout, 'timeout is present')
+  test.equal(typeof config.timeout, 'number', 'timeout is a number')
+  test.equal(config.timeout, parseInt(config.timeout), 'timeout is an integer')
+
   test.end()
 })
