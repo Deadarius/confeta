@@ -1,6 +1,6 @@
 {
   "name": "confeta-env",
-  "version": "1.0.6",
+  "version": "1.1.1",
   "description": "",
   "main": "lib/index.js",
   "srcPath": "src",
