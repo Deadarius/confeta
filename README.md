@@ -1,5 +1,9 @@
 # Confeta
-Delicious configuration library
+### Delicious configuration library
+
+![](https://raw.githubusercontent.com/Deadarius/confeta/master/images/confeta-large.png)
+
+# Usage:
 
 ```js
 import { Confeta, types } from 'confeta'
