@@ -19,6 +19,8 @@ class ConfetaFile {
       if (!fs.existsSync(filePath)) {
         this[$hasNoFile] = true
         this[$obj] = {}
+
+        return
       }
 
       obj = parseFn(fs.readFileSync(filePath, 'utf8'))
