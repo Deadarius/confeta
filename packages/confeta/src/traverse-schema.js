@@ -6,7 +6,7 @@ function traverseSchema (schema, fn, segments = []) {
 
     const { type } = descriptor
 
-    if (typeof type === 'object' && Object.keys(type).length > 0) {
+    if (!(type instanceof Array) && typeof type === 'object' && Object.keys(type).length > 0) {
       traverseSchema(type, fn, deeperSegments)
     } else {
       fn(descriptor, deeperSegments)

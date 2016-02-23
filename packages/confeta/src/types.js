@@ -1,4 +1,4 @@
-const types = {
+let types = {
   string: Symbol('confeta:string'),
   integer: Symbol('confeta:string'),
   float: Symbol('confeta:float'),

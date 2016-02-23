@@ -4,5 +4,15 @@
   "host": {
     "domain": "localhost",
     "port": 3000
-  }
+  },
+  "cats": [
+  	"tom",
+  	"fluffy",
+  	"baltozar"
+  ],
+  "randoms": [
+  	"string!",
+  	13,
+  	true
+  ]
 }

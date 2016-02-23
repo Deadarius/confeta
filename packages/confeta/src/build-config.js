@@ -89,18 +89,9 @@ function processPrimitiveType (raw, type, options) {
 
       break
     }
-    case types.arrayOf: {
-      if (!(raw instanceof Array)) {
-        throwIfStrict(options)
-
-        value = [raw]
-      }
-
-      break
-    }
 
     default: {
-      throw new Error('')
+      throw new Error('Not supported type')
     }
   }
 
