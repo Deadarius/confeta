@@ -4,6 +4,36 @@ import { Confeta, types } from '../index'
 
 let mockSource = {
   get (segments) {
+    if (segments[segments.length - 1].startsWith('arrayOfString')) {
+      let array = []
+      for (let i = 0; i < 10; i++) {
+        let newVal = Math.random() * 100 + 13
+        array.push('' + newVal)
+      }
+      return array
+    }
+
+    if (segments[segments.length - 1].startsWith('arrayOfInteger')) {
+      let array = []
+      for (let i = 0; i < 10; i++) {
+        let newVal = Math.floor(Math.random() * 100 + 13)
+        array.push(newVal)
+      }
+      return array
+    }
+
+    if (segments[segments.length - 1].startsWith('array')) {
+      let array = []
+      for (let i = 0; i < 10; i++) {
+        let newVal = Math.random() * 100 + 13
+        if (newVal > 60) {
+          newVal = '' + newVal
+        }
+        array.push(newVal)
+      }
+      return array
+    }
+
     return '' + Math.random() * 100 + 13
   }
 }
@@ -30,6 +60,9 @@ let schema = {
   },
   timeout: {
     type: types.integer
+  },
+  array: {
+    type: types.array
   }
 }
 
@@ -70,6 +103,10 @@ tape('Test', test => {
   test.ok(config.timeout, 'timeout is present')
   test.equal(typeof config.timeout, 'number', 'timeout is a number')
   test.equal(config.timeout, parseInt(config.timeout), 'timeout is an integer')
+
+  test.ok(config.array, 'array is present')
+  test.ok(config.array instanceof Array, 'array is indeed an array')
+  test.ok(config.array.length > 0, 'array has members')
 
   test.end()
 })

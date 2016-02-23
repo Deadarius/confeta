@@ -3,7 +3,11 @@ const types = {
   integer: Symbol('confeta:string'),
   float: Symbol('confeta:float'),
   boolean: Symbol('confeta:boolean'),
-  date: Symbol('confeta:date')
+  date: Symbol('confeta:date'),
+  array: Symbol('confeta:array'),
+  arrayOf (type) {
+    return [type]
+  }
 }
 
 export default types

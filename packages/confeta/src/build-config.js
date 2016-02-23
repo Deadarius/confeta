@@ -17,78 +17,116 @@ function assignValue (result, segments, value) {
   assignValue(nextResult, segments.slice(1), value)
 }
 
-function buildConfig (schema, getValue, options) {
-  function throwIfStrict () {
-    if (options.strict) {
-      throw new Error('Incorrect type')
+function throwIfStrict (options) {
+  if (options.strict) {
+    throw new Error('Incorrect type')
+  }
+}
+
+function processPrimitiveType (raw, type, options) {
+  let value = raw
+
+  switch (type) {
+    case types.string: {
+      if (typeof raw !== 'string') {
+        throwIfStrict(options)
+
+        value = `${raw}`
+      }
+
+      break
+    }
+    case types.boolean: {
+      if (typeof raw !== 'boolean') {
+        throwIfStrict(options)
+
+        value = raw === 'true'
+      }
+      break
+    }
+    case types.integer: {
+      if (typeof raw !== 'number') {
+        throwIfStrict(options)
+
+        value = parseInt(raw, 10)
+
+        if (isNaN(value)) {
+          throw new Error('Couldn\'t parse integer')
+        }
+      }
+      break
+    }
+    case types.float: {
+      if (typeof setting !== 'number') {
+        throwIfStrict(options)
+
+        value = parseFloat(raw)
+      }
+
+      if (isNaN(value)) {
+        throw new Error('Couldn\'t parse float')
+      }
+      break
+    }
+    case types.date: {
+      if (!(raw instanceof Date)) {
+        throwIfStrict(options)
+
+        value = new Date(raw)
+      }
+
+      if (value.toString() === 'Invalid Date') {
+        throw new Error('Couldn\'t parse date')
+      }
+      break
+    }
+    case types.array: {
+      if (!(raw instanceof Array)) {
+        throwIfStrict(options)
+
+        value = raw
+      }
+
+      break
+    }
+    case types.arrayOf: {
+      if (!(raw instanceof Array)) {
+        throwIfStrict(options)
+
+        value = [raw]
+      }
+
+      break
+    }
+
+    default: {
+      throw new Error('')
     }
   }
 
+  return value
+}
+
+function buildConfig (schema, getValue, options) {
   let result = {}
 
   traverseSchema(schema, (descriptor, segments) => {
     let raw = getValue(segments, descriptor)
     let value = raw
 
-    switch (descriptor.type) {
-      case types.string: {
-        if (typeof raw !== 'string') {
-          throwIfStrict()
+    if (descriptor.type instanceof Array) {
+      if (!(raw instanceof Array)) {
+        throwIfStrict(options)
 
-          value = `${raw}`
-        }
-        break
-      }
-      case types.boolean: {
-        if (typeof raw !== 'boolean') {
-          throwIfStrict()
-
-          value = raw === 'true'
-        }
-        break
-      }
-      case types.integer: {
-        if (typeof raw !== 'number') {
-          throwIfStrict()
-
-          value = parseInt(raw, 10)
-
-          if (isNaN(value)) {
-            throw new Error('Couldn\'t parse integer')
-          }
-        }
-        break
-      }
-      case types.float: {
-        if (typeof setting !== 'number') {
-          throwIfStrict()
-
-          value = parseFloat(raw)
-        }
-
-        if (isNaN(value)) {
-          throw new Error('Couldn\'t parse float')
-        }
-        break
-      }
-      case types.date: {
-        if (!(raw instanceof Date)) {
-          throwIfStrict()
-
-          value = new Date(raw)
-        }
-
-        if (value.toString() === 'Invalid Date') {
-          throw new Error('Couldn\'t parse date')
-        }
-        break
+        value = [raw]
       }
 
-      default: {
-        throw new Error('')
-      }
+      let underlyingType = descriptor.type[0]
+
+      value = value.map(x => processPrimitiveType(x, underlyingType, options))
+    } else {
+      value = processPrimitiveType(value, descriptor.type, options)
     }
-
     assignValue(result, segments, value)
   })
 
