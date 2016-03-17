@@ -1,8 +1,10 @@
 const $env = Symbol('env')
 const $separator = Symbol('separator')
+const $options = Symbol('options')
 
 class ConfetaEnv {
   constructor (options = {}) {
+    this[$options] = options
     let prefix = options.prefix || ''
     this[$separator] = options.separator || '.'
     this[$env] = Object.keys(process.env)
@@ -18,7 +20,14 @@ class ConfetaEnv {
   get (segments) {
     let path = segments.join(this[$separator])
 
-    return this[$env][path]
+    let value = this[$env][path]
+    const arraySeparator = this[$options].arraySeparator
+
+    if (arraySeparator) {
+      value = value.split(arraySeparator)
+    }
+
+    return value
   }
 }
 

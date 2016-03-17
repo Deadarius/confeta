@@ -7,7 +7,8 @@ process.env = {
   'PRE__ARG2': 'arg2',
   'PRE__NESTED__ARG_ONE': 'argone',
   'PRE__NESTED__ARG_TWO': 'argtwo',
-  'PRE__NESTED__SUBNESTED__ARG_THREE': 'argthree'
+  'PRE__NESTED__SUBNESTED__ARG_THREE': 'argthree',
+  'ARRAY': 'one,two,three'
 }
 
 tape('Test parse', test => {
@@ -18,6 +19,18 @@ tape('Test parse', test => {
   test.equal(confetaEnv.get(['NESTED', 'ARG_ONE']), 'argone')
   test.equal(confetaEnv.get(['NESTED', 'ARG_TWO']), 'argtwo')
   test.equal(confetaEnv.get(['NESTED', 'SUBNESTED', 'ARG_THREE']), 'argthree')
+
+  test.end()
+})
+
+tape('Test array', test => {
+  let confetaEnvWithArrays = ConfetaEnv({arraySeparator: ','})
+
+  test.deepEqual(confetaEnvWithArrays.get(['ARRAY']), ['one', 'two', 'three'])
+
+  let confetaEnvWithoutArrays = ConfetaEnv()
+
+  test.equal(confetaEnvWithoutArrays.get(['ARRAY']), 'one,two,three')
 
   test.end()
 })
