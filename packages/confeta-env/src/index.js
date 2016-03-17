@@ -23,7 +23,7 @@ class ConfetaEnv {
     let value = this[$env][path]
     const arraySeparator = this[$options].arraySeparator
 
-    if (arraySeparator) {
+    if (arraySeparator && value.indexOf(arraySeparator) > -1) {
       value = value.split(arraySeparator)
     }
 

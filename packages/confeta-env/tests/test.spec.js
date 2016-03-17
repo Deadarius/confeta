@@ -27,6 +27,7 @@ tape('Test array', test => {
   let confetaEnvWithArrays = ConfetaEnv({arraySeparator: ','})
 
   test.deepEqual(confetaEnvWithArrays.get(['ARRAY']), ['one', 'two', 'three'])
+  test.equal(confetaEnvWithArrays.get(['ARG1']), 'ignored')
 
   let confetaEnvWithoutArrays = ConfetaEnv()
 
