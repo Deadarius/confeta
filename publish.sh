@@ -4,7 +4,7 @@ cd ./packages/confeta-env/
 npm run build && npm run test
 cd ./packages/confeta-argv/
 npm run build && npm run test
-cd ./packages/confeta-file/
+cd ./packages/confeta-text/
 npm run build && npm run test
 
 cd ../../

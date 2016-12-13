@@ -1,54 +1,25 @@
 import fs from 'fs'
 import path from 'path'
 
-const $obj = Symbol('obj')
-const $hasNoFile = Symbol('has-no-file')
+import ConfetaText from 'confeta-text'
 
-class ConfetaFile {
-  constructor (options = {}) {
-    this[$hasNoFile] = false
-
-    let parseFn = options.parseFn || JSON.parse
-    let obj
-    if (options.content) {
-      obj = parseFn(options.content)
-    } else if (options.path) {
-      let filePath = options.path
-
-      !path.isAbsolute(filePath) && (filePath = path.resolve(process.cwd(), options.path))
-      if (!fs.existsSync(filePath)) {
-        this[$hasNoFile] = true
-        this[$obj] = {}
-
-        return
-      }
-
-      obj = parseFn(fs.readFileSync(filePath, 'utf8'))
+class ConfetaFile extends ConfetaText {
+  constructor (filePath, options = {}) {
+    if (!path.isAbsolute(filePath)) {
+      filePath = path.resolve(process.cwd(), filePath)
     }
 
-    this[$obj] = obj
-  }
-
-  get (segments) {
-    if (this[$hasNoFile]) {
-      return
+    if (!fs.existsSync(filePath)) {
+      return super('{}')
     }
 
-    let value = this[$obj]
+    const text = fs.readFileSync(filePath, 'utf8')
 
-    for (const segment of segments) {
-      value = value[segment]
-
-      if (!value) {
-        return
-      }
-    }
-
-    return value
+    super(text, {parseFn: options.parseFn})
   }
 }
 
-export default function createInstance (options) {
-  return new ConfetaFile(options)
+export default function createInstance (...args) {
+  return new ConfetaFile(...args)
 }
 

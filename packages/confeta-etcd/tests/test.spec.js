@@ -5,16 +5,17 @@ import ConfetaFile from '../lib/index'
 
 tape('Parse function', test => {
   test.plan(1)
-  ConfetaFile('tests/fixture.txt', {
+  ConfetaFile({
     parseFn (content) {
       test.equal(content, 'TEXTBLAHBLAH\n')
       return {}
-    }
+    },
+    path: 'tests/fixture.txt'
   })
 })
 
 tape('Parse JSON', test => {
-  let confetaFile = ConfetaFile('tests/fixture.json', {parseFn: JSON.parse})
+  let confetaFile = ConfetaFile({parseFn: JSON.parse, path: 'tests/fixture.json'})
 
   test.equal(confetaFile.get(['arg1']), 'argone')
   test.equal(confetaFile.get(['arg2']), 'argtwo')
@@ -26,7 +27,7 @@ tape('Parse JSON', test => {
 })
 
 tape('Parse YAML', test => {
-  let confetaFile = ConfetaFile('tests/fixture.yaml', {parseFn: yaml.eval})
+  let confetaFile = ConfetaFile({parseFn: yaml.eval, path: 'tests/fixture.yaml'})
 
   test.equal(confetaFile.get(['arg1']), 'argone')
   test.equal(confetaFile.get(['arg2']), 'argtwo')
