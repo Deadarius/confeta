@@ -4,7 +4,7 @@ import ConfetaText from 'confeta-text'
 class ConfetaEtcd extends ConfetaText {
   constructor (hosts, path, etcdOptions = {}, confetaOptions = {}) {
     const etcd = new Etcd(hosts, etcdOptions)
-    const { node: {value = '{}'} } = etcd.getSync(path)
+    const { body: {node: {value = '{}'}} } = etcd.getSync(path)
 
     super(value, {parseFn: confetaOptions.parseFn})
   }

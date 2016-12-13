@@ -5,8 +5,10 @@ import sinon from 'sinon'
 const jsonText = fs.readFileSync(path.resolve(__dirname, './fixture.json'), 'utf8')
 
 const response = {
-  node: {
-    value: jsonText
+  body: {
+    node: {
+      value: jsonText
+    }
   }
 }
 
