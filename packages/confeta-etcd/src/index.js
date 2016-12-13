@@ -1,23 +1,16 @@
 import Etcd from 'node-etcd'
 import ConfetaText from 'confeta-text'
 
-const $confetaText = Symbol('confetaText')
-
-class ConfetaEtcd {
-  constructor (hosts, etcdOptions = {}, confetaOptions = {}) {
-    const path = confetaOptions.path || ''
+class ConfetaEtcd extends ConfetaText {
+  constructor (hosts, path, etcdOptions = {}, confetaOptions = {}) {
     const etcd = new Etcd(hosts, etcdOptions)
-    const { node: {value} } = etcd.getSync(path)
+    const { node: {value = '{}'} } = etcd.getSync(path)
 
-    this[$confetaText] = ConfetaText(value, {parseFn: confetaOptions.parseFn})
-  }
-
-  get (segments) {
-    return this[$confetaText].get(segments)
+    super(value, {parseFn: confetaOptions.parseFn})
   }
 }
 
-export default function createInstance (options) {
-  return new ConfetaEtcd(options)
+export default function createInstance (...args) {
+  return new ConfetaEtcd(...args)
 }
 

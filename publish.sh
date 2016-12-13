@@ -6,6 +6,10 @@ cd ./packages/confeta-argv/
 npm run build && npm run test
 cd ./packages/confeta-text/
 npm run build && npm run test
+cd ./packages/confeta-file/
+npm run build && npm run test
+cd ./packages/confeta-etcd/
+npm run build && npm run test
 
 cd ../../
 cp ./packages/confeta/README.md ./packages/confeta/README.md.old

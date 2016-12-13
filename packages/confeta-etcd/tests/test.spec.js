@@ -1,39 +1,22 @@
 import tape from 'tape'
-import yaml from 'yaml'
+import proxyquire from 'proxyquire'
+import fakeEtcd, { spy } from './fake-etcd.js'
 
-import ConfetaFile from '../lib/index'
+const ConfetaEtcd = proxyquire('../lib/index', {
+  'node-etcd': fakeEtcd
+}).default
 
-tape('Parse function', test => {
-  test.plan(1)
-  ConfetaFile({
-    parseFn (content) {
-      test.equal(content, 'TEXTBLAHBLAH\n')
-      return {}
-    },
-    path: 'tests/fixture.txt'
-  })
-})
-
-tape('Parse JSON', test => {
-  let confetaFile = ConfetaFile({parseFn: JSON.parse, path: 'tests/fixture.json'})
-
-  test.equal(confetaFile.get(['arg1']), 'argone')
-  test.equal(confetaFile.get(['arg2']), 'argtwo')
-  test.equal(confetaFile.get(['nested', 'arg1']), 'nestedargone')
-  test.equal(confetaFile.get(['nested', 'arg2']), 'nestedargtwo')
-  test.equal(confetaFile.get(['nested', 'subnested', 'arg3']), 'argthree')
+tape('Hosts are passed correctly', test => {
+  const hosts = ['https://fake.com/fake', 'https://fake2.com/fake2']
+  ConfetaEtcd(hosts)
+  test.equal(spy.hosts, hosts)
 
   test.end()
 })
 
-tape('Parse YAML', test => {
-  let confetaFile = ConfetaFile({parseFn: yaml.eval, path: 'tests/fixture.yaml'})
-
-  test.equal(confetaFile.get(['arg1']), 'argone')
-  test.equal(confetaFile.get(['arg2']), 'argtwo')
-  test.equal(confetaFile.get(['nested', 'arg1']), 'nestedargone')
-  test.equal(confetaFile.get(['nested', 'arg2']), 'nestedargtwo')
-  test.equal(confetaFile.get(['nested', 'subnested', 'arg3']), 'argthree')
+tape('Options are passed correctly', test => {
+  ConfetaEtcd([], {a: 1, b: 2})
+  test.equal(Object.keys(spy.options).length, 0)
 
   test.end()
 })
