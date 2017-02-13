@@ -1,6 +1,6 @@
 {
   "name": "confeta-file",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Confeta file source",
   "main": "lib/index.js",
   "srcPath": "src",
@@ -17,7 +17,7 @@
     "clean": "rm -rf $npm_package_buildPath && mkdir $npm_package_buildPath",
     "build": "npm run clean && babel $npm_package_srcPath --out-dir $npm_package_buildPath",
     "watch": "watch-run -s -p $npm_package_testsGlob,$npm_package_srcGlob -i \"npm run build && npm run test-pretty\" ",
-    "prepublish": "npm run lint && npm run build && npm run test && npm shrinkwrap --production"
+    "prepublish": "npm run lint && npm run build && npm run test"
   },
   "author": "Alex Lapa <deadarius.dendr@gmail.com>",
   "license": "MIT",
@@ -39,6 +39,6 @@
     "yaml": "^0.2.3"
   },
   "dependencies": {
-    "confeta-text": "^1.0.3"
+    "confeta-text": "^1.0.4"
   }
 }

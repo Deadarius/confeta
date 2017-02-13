@@ -1,6 +1,6 @@
 {
   "name": "confeta",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Confeta core package",
   "main": "index.js",
   "srcPath": "src",
@@ -28,7 +28,7 @@
     "clean": "rm -rf $npm_package_buildPath && mkdir $npm_package_buildPath",
     "build": "npm run clean && babel $npm_package_srcPath --out-dir $npm_package_buildPath",
     "watch": "watch-run -s -p $npm_package_testsGlob,$npm_package_srcGlob -i \"npm run build && npm run test-pretty\" ",
-    "prepublish": "npm run lint && npm run build && npm run test && npm shrinkwrap"
+    "prepublish": "npm run lint && npm run build && npm run test"
   },
   "author": "Alex Lapa <deadarius.dendr@gmail.com>",
   "license": "MIT",
