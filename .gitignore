@@ -1,6 +1,6 @@
 **/node_modules/*
-**/npm-debug.log
-**/npm-debug.log*
+**/npm-debug.log.*
+**/*.log
 **/npm-shrinkwrap.json
 **/*.npm*
 **/lib/*
