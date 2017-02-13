@@ -1,18 +1,20 @@
-cd ./packages/confeta/
-npm run build && npm run test
-cd ./packages/confeta-env/
-npm run build && npm run test
-cd ./packages/confeta-argv/
-npm run build && npm run test
-cd ./packages/confeta-text/
-npm run build && npm run test
-cd ./packages/confeta-file/
-npm run build && npm run test
-cd ./packages/confeta-etcd/
-npm run build && npm run test
+cd packages/confeta/
+npm i && npm run build && npm publish
+cd ../..
+cd packages/confeta-env/
+npm i && npm run build && npm publish
+cd ../..
+cd packages/onfeta-argv/
+npm i && npm run build && npm publish
+cd ../..
+cd packages/confeta-text/
+npm i && npm run build && npm publish
+cd ../..
+cd packages/confeta-file/
+npm i && npm run build && npm publish
+cd ../..
+cd packages/confeta-etcd/
+npm i && npm run build && npm publish
+cd ../..
 
-cd ../../
-cp ./packages/confeta/README.md ./packages/confeta/README.md.old
-cp README.md ./packages/confeta/
-
-lerna publish || rm ./packages/confeta/README.md && cp ./packages/confeta/README.md.old ./packages/confeta/README.md && rm ./packages/confeta/README.md.old
+#lerna publish || rm ./packages/confeta/README.md && cp ./packages/confeta/README.md.old ./packages/confeta/README.md && rm ./packages/confeta/README.md.old
