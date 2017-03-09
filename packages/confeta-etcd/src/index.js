@@ -7,6 +7,7 @@ class ConfetaEtcd extends ConfetaText {
     const result = etcd.getSync(path)
 
     let parseFn = confetaOptions.parseFn
+    let value = ''
 
     if (result.err) {
       if (result.err.errorCode === 100) { // key not found - ignore
@@ -16,9 +17,9 @@ class ConfetaEtcd extends ConfetaText {
 
         throw new Error(`Error accessing etcd${message}`)
       }
+    } else {
+      value = result.body.node.value
     }
-
-    const { body: {node: {value = '{}'}} } = result
 
     super(value, { parseFn })
   }
