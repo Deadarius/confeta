@@ -1,6 +1,6 @@
 {
   "name": "confeta-etcd",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "Confeta file source",
   "main": "lib/index.js",
   "srcPath": "src",
