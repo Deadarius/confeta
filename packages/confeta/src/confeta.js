@@ -42,7 +42,7 @@ class Confeta {
       }
 
       if (descriptor.required) {
-        throw new Error(`Required value ${segments} was not found in any source`)
+        throw new Error(`Required value ${segments.join('.')} was not found in any source`)
       }
     }, this[$options])
   }
