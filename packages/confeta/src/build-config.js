@@ -91,7 +91,7 @@ function processPrimitiveType (raw, type, options) {
     }
 
     default: {
-      throw new Error('Not supported type')
+      value = raw
     }
   }
 

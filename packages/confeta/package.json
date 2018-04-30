@@ -1,6 +1,6 @@
 {
-  "name": "confeta",
-  "version": "1.2.6",
+  "name": "@mighway/confeta",
+  "version": "1.3.0",
   "description": "Confeta core package",
   "main": "index.js",
   "srcPath": "src",
