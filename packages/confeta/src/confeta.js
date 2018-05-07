@@ -32,12 +32,12 @@ class Confeta {
 
         let value = instance.get(mappedSegments)
 
-        if (value) {
+        if (value !== null && value !== undefined) {
           return value
         }
       }
 
-      if (descriptor.default) {
+      if (descriptor.default !== null && descriptor.default !== undefined) {
         return descriptor.default
       }
 
